@@ -1,2 +1,3 @@
 packages: ./migrant-core/
           ./migrant-sqlite-simple/
+          ./migrant-postgresql-simple/
