@@ -1,0 +1,2 @@
+packages: ./migrant-core/
+          ./migrant-sqlite-simple/
