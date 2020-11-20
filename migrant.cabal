@@ -23,9 +23,18 @@ library migrant-core
                  , Database.Migrant.MigrationName
   -- other-extensions:
   build-depends: base ^>=4.12.0.0
-               , bytestring >=0.10.0.0 && <0.12
                , text >=1.2.4.0 && <1.3
   hs-source-dirs: src
+  default-language: Haskell2010
+
+library migrant-sqlite-simple
+  exposed-modules: Database.Migrant.Driver.Sqlite
+  -- other-extensions:
+  build-depends: base ^>=4.12.0.0
+               , migrant-core
+               , sqlite-simple >=0.4.18.0 && <0.5
+               , text >=1.2.4.0 && <1.3
+  hs-source-dirs: src-sqlite
   default-language: Haskell2010
 
 test-suite migrant-test
@@ -33,11 +42,17 @@ test-suite migrant-test
   type: exitcode-stdio-1.0
   hs-source-dirs: test
   main-is: Spec.hs
+  other-modules: Database.Migrant.Run_Orphans
+               , Database.Migrant.MigrationName_Orphans
+               , Database.Migrant.Run_Tests
+               , Database.Migrant.Driver.Sqlite_Tests
   build-depends: base ^>=4.12.0.0
                , migrant-core
+               , migrant-sqlite-simple
                , HUnit >=1.6.1.0 && <1.7
                , QuickCheck >=2.14.2 && <2.15
-               , text >=1.2.4.0 && <1.3
+               , sqlite-simple >=0.4.18.0 && <0.5
                , tasty >=1.4 && <1.5
                , tasty-hunit >=0.10.0.2 && <0.11
                , tasty-quickcheck >=0.10.1.1 && <0.11
+               , text >=1.2.4.0 && <1.3
