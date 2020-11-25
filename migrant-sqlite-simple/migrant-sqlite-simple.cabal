@@ -14,7 +14,7 @@ author: Tobias Dammers
 maintainer: tdammers@gmail.com
 -- copyright:
 category: Database
-extra-source-files: CHANGELOG.md
+extra-source-files:
 
 library
   exposed-modules: Database.Migrant.Driver.Sqlite

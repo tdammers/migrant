@@ -24,7 +24,7 @@ import Database.Migrant
 import Database.Migrant.Driver.PostgreSQL
 
 tests :: TestTree
-tests = testGroup "SQLite"
+tests = testGroup "PostgreSQL"
   [ testCase "Setup/init" testPostgreSQLSetup
   , testCase "Up" testPostgreSQLUp
   , testCase "Down" testPostgreSQLDown
