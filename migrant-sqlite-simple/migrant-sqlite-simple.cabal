@@ -3,7 +3,7 @@ cabal-version: 2.4
 -- For further documentation, see http://haskell.org/cabal/users-guide/
 
 name: migrant-sqlite-simple
-version: 0.1.0.0
+version: 0.1.0.1
 synopsis: Semi-automatic database schema migrations
 -- description:
 homepage: https://github.com/tdammers/migrant
@@ -19,10 +19,10 @@ extra-source-files:
 library
   exposed-modules: Database.Migrant.Driver.Sqlite
   -- other-extensions:
-  build-depends: base ^>=4.12.0.0
+  build-depends: base >=4.12.0.0 && <5
                , migrant-core
                , sqlite-simple >=0.4.18.0 && <0.5
-               , text >=1.2.4.0 && <1.3
+               , text ^>=1.2
   hs-source-dirs: src
   default-language: Haskell2010
 
@@ -32,7 +32,7 @@ test-suite migrant-sqlite-simple-test
   hs-source-dirs: test
   main-is: Spec.hs
   other-modules: Database.Migrant.Driver.Sqlite_Tests
-  build-depends: base ^>=4.12.0.0
+  build-depends: base >=4.12.0.0 && <5
                , migrant-core
                , migrant-sqlite-simple
                , HUnit >=1.6.1.0 && <1.7
@@ -41,4 +41,4 @@ test-suite migrant-sqlite-simple-test
                , tasty >=1.4 && <1.5
                , tasty-hunit >=0.10.0.2 && <0.11
                , tasty-quickcheck >=0.10.1.1 && <0.11
-               , text >=1.2.4.0 && <1.3
+               , text ^>=1.2
