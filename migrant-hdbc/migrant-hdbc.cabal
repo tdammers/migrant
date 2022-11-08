@@ -19,10 +19,10 @@ extra-source-files:
 library
   exposed-modules: Database.Migrant.Driver.HDBC
   -- other-extensions:
-  build-depends: base >=4.12.0.0 && <4.15.0.0
+  build-depends: base >=4.12.0.0 && <5
                , migrant-core
                , HDBC >=2.4.0.3 && <2.5
-               , text ^>=1.2
+               , text >=1.2 && <3
   hs-source-dirs: src
   default-language: Haskell2010
 
@@ -32,7 +32,7 @@ test-suite migrant-hdbc-test
   hs-source-dirs: test
   main-is: Spec.hs
   other-modules: Database.Migrant.Driver.HDBC_Tests
-  build-depends: base >=4.12.0.0 && <4.15.0.0
+  build-depends: base >=4.12.0.0 && <5
                , migrant-core
                , migrant-hdbc
                , HUnit >=1.6.1.0 && <1.7
@@ -44,4 +44,4 @@ test-suite migrant-hdbc-test
                , tasty >=1.4 && <1.5
                , tasty-hunit >=0.10.0.2 && <0.11
                , tasty-quickcheck >=0.10.1.1 && <0.11
-               , text ^>=1.2
+               , text >=1.2 && <3
