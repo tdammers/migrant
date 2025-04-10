@@ -41,7 +41,7 @@ makePlan [] []
 makePlan [] xs
   -- Situation 1: no more "up" targets left, but more migrations exist, so
   -- we need to roll those back.
-  = [(MigrateDown, n) | n <- xs]
+  = [(MigrateDown, n) | n <- reverse xs]
 makePlan xs []
   -- Situation 2: only "up" targets left, run them.
   = [(MigrateUp, n) | n <- xs]
