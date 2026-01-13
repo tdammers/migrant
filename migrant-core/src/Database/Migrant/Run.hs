@@ -52,10 +52,11 @@ makePlan (t:ts) (c:cs)
   | t == c
   = makePlan ts cs
   -- Situation 4: both "up" targets and existing migrations are present but the
-  -- do not match, so we need to roll back existing migrations until a
-  -- consistent situation is restored.
+  -- do not match, so we need to roll back all existing migrations, and then
+  -- apply all remaining target migrations.
   | otherwise
-  = (MigrateDown, c):makePlan (t:ts) cs
+  = [(MigrateDown, n) | n <- reverse (c:cs)] ++
+    [(MigrateUp, n) | n <- t:ts]
 
 -- | Apply a migration plan to a database.
 -- This should generally be done within the same transaction as loading the

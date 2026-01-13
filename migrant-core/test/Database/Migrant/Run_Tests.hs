@@ -40,21 +40,21 @@ makePlanTests =
   ]
 
 propSameInputEmptyDiff migs =
-  makePlan migs migs == []
+  makePlan migs migs === []
 
 propAppendIsDiff base ext =
-  makePlan (base ++ ext) base == [(MigrateUp, m) | m <- ext]
+  makePlan (base ++ ext) base === [(MigrateUp, m) | m <- ext]
 
 propRemoveIsDiff base ext =
-  makePlan base (base ++ ext) == [(MigrateDown, m) | m <- ext]
+  makePlan base (base ++ ext) === [(MigrateDown, m) | m <- reverse ext]
 
 propDiffNotLargerThanInputs target current =
   length (makePlan target current) <= length target + length current
 
 propRemoveBeforeAdd ext1 ext2 =
   all not ((==) <$> ext1 <*> ext2) ==>
-  makePlan ext1 ext2 ==
-  [(MigrateDown, e) | e <- ext2] ++
+  makePlan ext1 ext2 ===
+  [(MigrateDown, e) | e <- reverse ext2] ++
   [(MigrateUp, e) | e <- ext1]
 
 executePlanTests :: [TestTree]
@@ -114,10 +114,10 @@ testMigrateSomething = do
   let expected =
         [ "BEGIN TRANSACTION"
         , "INIT"
-        , "MigrateDown bar"
-        , "MARK MigrateDown bar"
         , "MigrateDown quux"
         , "MARK MigrateDown quux"
+        , "MigrateDown bar"
+        , "MARK MigrateDown bar"
         , "MigrateUp foo"
         , "MARK MigrateUp foo"
         , "MigrateUp bar"
