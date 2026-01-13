@@ -15,6 +15,7 @@ maintainer: tdammers@gmail.com
 -- copyright:
 category: Database
 extra-source-files: 
+extra-doc-files: README.markdown
 
 library
   exposed-modules: Database.Migrant
